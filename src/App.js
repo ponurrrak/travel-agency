@@ -4,7 +4,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AnimatedSwitch} from 'react-router-transition';
 import MainLayout from './components/layout/MainLayout/MainLayout';
-
+import styles from './styles/App.module.scss';
 import Home from './components/views/Home/Home';
 import Trips from './components/views/Trips/TripsContainer';
 import Countries from './components/views/Countries/CountriesContainer';
@@ -13,6 +13,7 @@ import Trip from './components/views/Trip/TripContainer';
 import Country from './components/views/Country/CountryContainer';
 import Info from './components/views/Info/Info';
 import NotFound from './components/views/NotFound/NotFound';
+import ScrollViewToTop from './components/features/ScrollViewToTop'
 
 import parseTrips from './utils/parseTrips';
 import {setMultipleStates} from './redux/globalRedux';
@@ -45,6 +46,7 @@ class App extends React.Component {
     }
     return (
       <BrowserRouter>
+        <ScrollViewToTop/>
         <MainLayout>
           <AnimatedSwitch
             atEnter={
@@ -60,7 +62,7 @@ class App extends React.Component {
               translateY: 0 }
             }
             mapStyles={mapStyles}
-            className="switch-wrapper"
+            className={styles.switchWrapper}
           >
             <Route exact path='/' component={Home} />
             <Route exact path='/trips' component={Trips} />
