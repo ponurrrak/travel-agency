@@ -46,7 +46,7 @@ class App extends React.Component {
     }
     return (
       <BrowserRouter>
-        <ScrollViewToTop/>
+        <ScrollViewToTop/>        
         <MainLayout>
           <AnimatedSwitch
             atEnter={
