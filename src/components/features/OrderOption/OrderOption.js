@@ -27,10 +27,7 @@ const OrderOption = ({name, type, id, setOrderOption, ...otherProps}) => {
         <h3 className={styles.title}>
           {name}
         </h3>
-        <OptionComponent
-          {...otherProps}
-          setOptionValue={value => setOrderOption({[id]: value})}
-        />
+        <OptionComponent {...otherProps} setOptionValue={value => setOrderOption({[id]: value})} />
       </div>
     );
   }
@@ -40,7 +37,7 @@ OrderOption.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  setOrderOption: PropTypes.func.isRequired,  
+  setOrderOption: PropTypes.func.isRequired,
 };
 
 export default OrderOption;
