@@ -36,7 +36,7 @@ export default function reducer(statePart = [], action = {}) {
         duration: {
           from: action.payload,
           to: statePart.duration.to,
-        }
+        },
       };
     case CHANGE_DURATION_TO:
       return {
@@ -44,14 +44,14 @@ export default function reducer(statePart = [], action = {}) {
         duration: {
           from: statePart.duration.from,
           to: action.payload,
-        }
+        },
       };
     case ADD_TAG:
       return {
         ...statePart,
         tags: statePart.tags.concat(action.payload),
       };
-    case REMOVE_TAG:
+    case REMOVE_TAG: {
       const newTags = [...statePart.tags];
       const tagToRemoveIndex = statePart.tags.indexOf(action.payload);
       newTags.splice(tagToRemoveIndex, 1);
@@ -59,6 +59,7 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         tags: newTags,
       };
+    }
     default:
       return statePart;
   }

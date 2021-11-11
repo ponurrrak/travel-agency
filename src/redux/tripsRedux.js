@@ -22,10 +22,10 @@ export const getFilteredTrips = ({trips, filters}) => {
 };
 
 export const getTripById = ({trips}, tripId) =>
-  trips.filter(trip => trip.id === tripId)[0]
+  trips.filter(trip => trip.id === tripId)[0];
 
 export const getTripsForCountry = ({trips}, countryCode) =>
-  trips.filter(trip => trip.country.code === countryCode)
+  trips.filter(trip => trip.country.code === countryCode);
 
 /* ACTIONS */
 

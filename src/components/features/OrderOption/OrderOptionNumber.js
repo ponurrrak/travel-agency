@@ -31,7 +31,7 @@ const OrderOptionNumber = ({currentValue, setOptionValue, limits, tripCost, pric
         {` (${optionPriceTotal})`}
       </span>
     </div>
-  )
+  );
 };
 
 OrderOptionNumber.propTypes = {

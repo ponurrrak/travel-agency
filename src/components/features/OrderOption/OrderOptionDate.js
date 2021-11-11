@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-datepicker';
 import './DatePickerStyles/react-datepicker.css';
 
 const OrderOptionDate = ({currentValue, setOptionValue}) => (

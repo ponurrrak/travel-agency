@@ -20,14 +20,14 @@ const OrderOptionCheckboxes = ({currentValue, setOptionValue, values}) => (
       <label
         key={value.id}
       >
-      <input
-        type="checkbox"
-        value={value.id}
-        checked={currentValue.indexOf(value.id) > -1}
-        onChange={event => setOptionValue(newValueSet(currentValue, value.id, event.currentTarget.checked))}
-      />
+        <input
+          type="checkbox"
+          value={value.id}
+          checked={currentValue.indexOf(value.id) > -1}
+          onChange={event => setOptionValue(newValueSet(currentValue, value.id, event.currentTarget.checked))}
+        />
         {`${value.name} (${formatPrice(value.price)})`}
-      </label>
+      </label>,
     )}
   </div>
 );

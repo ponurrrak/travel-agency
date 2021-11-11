@@ -13,7 +13,7 @@ import Trip from './components/views/Trip/TripContainer';
 import Country from './components/views/Country/CountryContainer';
 import Info from './components/views/Info/Info';
 import NotFound from './components/views/NotFound/NotFound';
-import ScrollViewToTop from './components/features/ScrollViewToTop'
+import ScrollViewToTop from './components/features/ScrollViewToTop';
 
 import parseTrips from './utils/parseTrips';
 import {setMultipleStates} from './redux/globalRedux';
@@ -46,20 +46,20 @@ class App extends React.Component {
     }
     return (
       <BrowserRouter>
-        <ScrollViewToTop/>        
+        <ScrollViewToTop/>
         <MainLayout>
           <AnimatedSwitch
             atEnter={
               { opacity: 0,
-              translateY: 200 }
+                translateY: 200 }
             }
             atLeave={
               { opacity: 0,
-              translateY: 0 }
+                translateY: 0 }
             }
             atActive={
               { opacity: 1,
-              translateY: 0 }
+                translateY: 0 }
             }
             mapStyles={mapStyles}
             className={styles.switchWrapper}
