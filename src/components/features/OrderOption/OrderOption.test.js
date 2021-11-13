@@ -41,7 +41,7 @@ describe('Component OrderOption', () => {
   });
   it('should return null if called without proper "type" prop', () => {
     const component = shallow(<OrderOption type='badType' {...mockProps}/>);
-    expect(component.type()).toEqual(null);
+    expect(component.isEmptyRender()).toBeTruthy();    
   });
   it('should render "name" prop', () => {
     const component = shallow(<OrderOption type='icons' {...mockProps}/>);

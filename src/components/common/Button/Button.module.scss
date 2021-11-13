@@ -24,4 +24,13 @@
       background: darken($color-primary, 5%);
     }
   }
+
+  &.center {
+    margin: 0 auto;
+  }
+
+  &.bigger {
+    padding: calc($base-size * 2);
+    font-size: calc($base-size * 1.5)
+  }
 }

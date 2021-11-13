@@ -16,7 +16,7 @@ import styles from './Trip.module.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
 // eslint-disable-next-line no-unused-vars
-const Trip = ({error, name, image, cost, days, description, country, intro}) => {
+const Trip = ({error, id, name, image, cost, days, description, country, intro}) => {
   if(error) return <NotFound />;
   else return (
     <Section>
@@ -45,7 +45,7 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
         <Row>
           <Col xs={12}>
             <PageTitle text='Trip details' />
-            <OrderForm tripCost={cost} />
+            <OrderForm tripCost={cost} tripId={id} tripName={name} tripCountryCode={country.alpha3Code}/>
           </Col>
         </Row>
       </Grid>
@@ -81,6 +81,7 @@ Trip.propTypes = {
   country: PropTypes.object,
   error: PropTypes.object,
   intro: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default Trip;
