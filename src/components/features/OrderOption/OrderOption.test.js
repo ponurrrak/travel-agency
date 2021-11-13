@@ -41,7 +41,7 @@ describe('Component OrderOption', () => {
   });
   it('should return null if called without proper "type" prop', () => {
     const component = shallow(<OrderOption type='badType' {...mockProps}/>);
-    expect(component.isEmptyRender()).toBeTruthy();    
+    expect(component.isEmptyRender()).toBeTruthy();
   });
   it('should render "name" prop', () => {
     const component = shallow(<OrderOption type='icons' {...mockProps}/>);
@@ -115,22 +115,6 @@ for(let type in optionTypes){
         });
         break;
       }
-
-      // Version below doesn't work. Why?
-      /*case 'text': {
-        const input = renderedSubcomponent.find('input[type="text"]');
-        it('contains text type input', () => {
-          expect(input.length).toBe(1);
-          expect(input.prop('value')).toEqual(mockProps.currentValue);
-        });
-        it('should run setOrderOption function on change', () => {
-          input.simulate('change', {currentTarget: {value: testValue}});
-          expect(mockProps.setOrderOption).toBeCalledTimes(1);
-          expect(mockProps.setOrderOption).toBeCalledWith({ [mockProps.id]: testValue });
-        });
-        break;
-      }*/
-
       case 'date': {
         it('contains DatePicker component', () => {
           const datePickerComponent = renderedSubcomponent.find(DatePicker);
