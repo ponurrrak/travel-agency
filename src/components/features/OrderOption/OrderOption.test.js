@@ -103,7 +103,7 @@ for(let type in optionTypes){
         break;
       }
       case 'text': {
-        it('contains text type input', () => {
+        it('contains text type input', () => {          
           const input = renderedSubcomponent.find('input[type="text"]');
           expect(input.length).toBe(1);
           expect(input.prop('value')).toEqual(mockProps.currentValue);

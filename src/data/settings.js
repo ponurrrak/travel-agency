@@ -5,7 +5,10 @@ const settings = {
       orders: 'orders',
     },
   },
-  message: 'Sorry, you have to type your name and contact info before you order.',
+  messages: {
+    error: 'Sorry, you have to type your name and contact info before you order.',
+    success: 'Your order has been sent successfully.',
+  },
 };
 
 export default settings;
