@@ -11,6 +11,8 @@ import DetailsImage from '../../common/DetailsImage/DetailsImage';
 import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
 import OrderForm from '../../features/OrderForm/OrderFormContainer';
+import HappyHourPrice from '../../features/HappyHour/HappyHourPrice';
+import settings from '../../../data/settings';
 
 import styles from './Trip.module.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
@@ -35,7 +37,11 @@ const Trip = ({error, id, name, image, cost, days, description, country, intro})
               </div>
               <List variant='light'>
                 <ListItem title={`<strong>Duration:</strong> ${days} days`} icon='calendar-alt' />
-                <ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />
+                {/*<HappyHourPrice cost={cost} promoParams={settings.promoParams}/>
+                <ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />*/}
+                <ListItem title={null} icon='money-bill-wave'>
+                  <HappyHourPrice cost={cost} promoParams={settings.promoParams}/>
+                </ListItem>
               </List>
             </Col>
           </Row>

@@ -33,8 +33,13 @@ const settings = {
       availableTo: '08:00',
     },
   ],
+  promoParams: {
+    rate: 0.2,
+    start: 12,
+    end: 13,
+  },
 };
 
-settings.clientServiceSchedule.filter(contact => !contact.phone)[0].message = 'The office opens at 8:00 UTC';
+settings.clientServiceSchedule.filter(contact => !contact.phone)[0].message = `The office opens at ${settings.clientServiceSchedule.filter(contact => !contact.phone)[0].availableTo} UTC`;
 
 export default settings;

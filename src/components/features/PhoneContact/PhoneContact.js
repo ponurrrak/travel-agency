@@ -32,15 +32,15 @@ class PhoneContact extends React.Component{
   }
 
   findCurrentContact(clientServiceSchedule, timeOnlyNow) {
-    clientServiceSchedule = this.addExactTimeToSchedule(clientServiceSchedule);
+    const scheduleProcessed = this.addExactTimeToSchedule(clientServiceSchedule);
     return (
-      clientServiceSchedule.filter(contact => (
+      scheduleProcessed.find(contact => (
         contact.availableFrom < contact.availableTo ?
           timeOnlyNow >= contact.availableFrom && timeOnlyNow < contact.availableTo
           :
           timeOnlyNow >= contact.availableFrom || timeOnlyNow < contact.availableTo
       ))
-    )[0];
+    );
   }
 
   countTimeout(currentContact, timeOnlyNow){

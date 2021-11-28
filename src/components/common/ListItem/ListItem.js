@@ -7,7 +7,12 @@ import styles from './ListItem.module.scss';
 function ListItem(props) {
   return (
     <div className={styles.component}>
-      <Icon name={props.icon} /><span>{ReactHtmlParser(props.title)}</span>
+      <Icon name={props.icon} />
+      {props.title ?
+        (<span>{ReactHtmlParser(props.title)}</span>)
+        :
+        props.children
+      }
     </div>
   );
 }
@@ -15,6 +20,7 @@ function ListItem(props) {
 ListItem.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default ListItem;
