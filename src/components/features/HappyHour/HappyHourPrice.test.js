@@ -1,6 +1,11 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {act} from 'react-dom/test-utils';
+import Enzyme, {shallow, mount} from 'enzyme';
 import HappyHourPrice from './HappyHourPrice';
+
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 const select = {
   span: 'span',
@@ -61,11 +66,14 @@ const checkElemAfterTime = (time, delaySeconds, select, expectedResult) => {
     const currentDateOnly = new Date().toISOString().split('T')[0];
     jest.useFakeTimers();
     global.Date = mockDate(`${currentDateOnly}T${time}.135Z`);
-    const component = shallow(<HappyHourPrice {...mockProps} />);
+    const component = mount(<HappyHourPrice {...mockProps} />);
     const newFakeTime = new Date();
     newFakeTime.setSeconds(newFakeTime.getSeconds() + delaySeconds);
     global.Date = mockDate(newFakeTime.getTime());
-    jest.advanceTimersByTime(delaySeconds * 1000);
+    act(()=> {
+      jest.advanceTimersByTime(delaySeconds * 1000);
+    });
+    component.update();
     const renderedResult = component.find(select).text();
     expect(renderedResult).toEqual(expectedResult);
     global.Date = trueDate;

@@ -16,7 +16,7 @@ const countPromoPrice = (standardPriceString, promoRate) => {
 const getDataForState = (promoParams) => {
   const dateNow = new Date();
   const hourNow = dateNow.getUTCHours();
-  const isPromoActive = (hourNow === promoParams.start) ? true : false;
+  const isPromoActive = (hourNow >= promoParams.start && hourNow < promoParams.end);
   const delay = isPromoActive ?
     (Date.UTC(dateNow.getUTCFullYear(), dateNow.getUTCMonth(), dateNow.getUTCDate(), promoParams.end)) - (Math.round(dateNow.getTime() / 1000) * 1000)
     :
@@ -33,17 +33,23 @@ const getDataForState = (promoParams) => {
 const HappyHourPrice = props => {
   const {cost, promoParams} = props;
   const promoPrice = countPromoPrice(cost, promoParams.rate);
+  //const dataForState = getDataForState(promoParams);
+  let dataForState;
+  dataForState = dataForState || getDataForState(promoParams);
 
-  const [state, setState] = useState(getDataForState(promoParams));
+  const [isPromoActive, setPromoActive] = useState(dataForState.isPromoActive);
+  const [delay, setDelay] = useState(dataForState.delay);
 
   useEffect(() => {
     setTimeout(() => {
-      setState(getDataForState(promoParams));
-    }, state.delay);
-  }, [state]);
+      dataForState = getDataForState(promoParams);
+      setPromoActive(dataForState.isPromoActive);
+      setDelay(dataForState.delay);
+    }, delay);
+  }, [isPromoActive, delay]);
 
   return (
-    state.isPromoActive ?
+    isPromoActive ?
       (<span>
         <strong className={styles.promoPrice}>{`Price from: ${promoPrice}`}</strong>
         {`Standard price: ${cost}`}
