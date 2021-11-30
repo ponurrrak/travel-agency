@@ -48,8 +48,13 @@ const mockDate = customDate => (
 const checkElemAtTime = (time, select, expectedResultLength, expectedResultText) => {
   it(`should render at ${time} ${expectedResultLength} element(s) matching with "${select}" selector, having expected content as well`, () => {
     const currentDateOnly = new Date().toISOString().split('T')[0];
+    jest.useFakeTimers();
     global.Date = mockDate(`${currentDateOnly}T${time}.135Z`);
-    const component = shallow(<HappyHourPrice {...mockProps} />);
+    const component = mount(<HappyHourPrice {...mockProps} />);
+    act(()=> {
+      jest.advanceTimersByTime(0);
+    });
+    component.update();
     const renderedResult = component.find(select);
     const renderedResultLength = renderedResult.length;
     expect(renderedResultLength).toBe(expectedResultLength);
@@ -58,6 +63,7 @@ const checkElemAtTime = (time, select, expectedResultLength, expectedResultText)
       expect(renderedResultText).toEqual(expectedResultText);
     }
     global.Date = trueDate;
+    jest.useRealTimers();
   });
 };
 
@@ -99,8 +105,6 @@ describe('Component HappyHourPrice', () => {
   checkElemAtTime('13:00:01', select.span, 1, portionsOfText.priceFrom + mockProps.cost);
   checkElemAtTime('13:00:01', select.strong, 1, portionsOfText.priceFrom);
   checkElemAtTime('13:00:01', select.promoPriceStrong, 0);
-
-  //Those 6 tests below are not being passed although functionality tested seems to work fine in browser. I can't find where the problem is.
   checkElemAfterTime('13:00:00', 23 * 60 * 60, select.promoPriceStrong, portionsOfText.priceFrom + portionsOfText.promoPrice);
   checkElemAfterTime('13:00:00', 23 * 60 * 60, select.span, portionsOfText.priceFrom + portionsOfText.promoPrice + portionsOfText.standardPrice + mockProps.cost);
   checkElemAfterTime('11:59:59', 2, select.promoPriceStrong, portionsOfText.priceFrom + portionsOfText.promoPrice);

@@ -33,16 +33,12 @@ const getDataForState = (promoParams) => {
 const HappyHourPrice = props => {
   const {cost, promoParams} = props;
   const promoPrice = countPromoPrice(cost, promoParams.rate);
-  //const dataForState = getDataForState(promoParams);
-  let dataForState;
-  dataForState = dataForState || getDataForState(promoParams);
-
-  const [isPromoActive, setPromoActive] = useState(dataForState.isPromoActive);
-  const [delay, setDelay] = useState(dataForState.delay);
+  const [isPromoActive, setPromoActive] = useState(false);
+  const [delay, setDelay] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
-      dataForState = getDataForState(promoParams);
+      const dataForState = getDataForState(promoParams);
       setPromoActive(dataForState.isPromoActive);
       setDelay(dataForState.delay);
     }, delay);
